@@ -4,6 +4,7 @@
   "description": "this is my graduation project",
   "main": "index.js",
   "scripts": {
+    "server": "nodemon --inspect index.js --ignore client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "nvl207",

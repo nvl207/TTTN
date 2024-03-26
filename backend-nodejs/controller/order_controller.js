@@ -36,14 +36,14 @@ module.exports.getProductByCart = (req, res) => {
 // đang lỗi
 
 //
-module.exports.getBillByIdAccount = (req, res) => {
-  const { id } = req.body;
-  const sql_query = "select * from `order` where id_account =? "	
-  database.query(sql_query, [id], (err, rows) => {
-    if (err) {
-      return res.json({ msg: err });
-    } else {
-      return res.json(rows);
-    }
-  });
-};
+// module.exports.getBillByIdAccount = (req, res) => {
+//   const { id } = req.body;
+//   const sql_query = "select * from `order` where id_account =? "	
+//   database.query(sql_query, [id], (err, rows) => {
+//     if (err) {
+//       return res.json({ msg: err });
+//     } else {
+//       return res.json(rows);
+//     }
+//   });
+// };
