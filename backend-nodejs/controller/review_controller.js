@@ -3,7 +3,7 @@ var database = require("../config/db_connect");
 
 module.exports.getReviewById = (req, res) => {
     const { id } = req.params; 
-    const sql_query = "SELECT * FROM review WHERE id = ?";
+    const sql_query = "SELECT * FROM review WHERE id_review = ?";
     database.query(sql_query, [id], (err, rows) => {
         if (err) {
             return res.json({ msg: err });
@@ -28,7 +28,7 @@ module.exports.addReview = (req, res) => {
 
 module.exports.editReview = (req, res) => {
     const { id, comment } = req.body;
-    const sql_query = "UPDATE review SET comment = ? WHERE id = ?";
+    const sql_query = "UPDATE review SET comment = ? WHERE id_review = ?";
     database.query(sql_query, [comment, id], (err, result) => {
         if (err) {
             return res.json({ msg: err });

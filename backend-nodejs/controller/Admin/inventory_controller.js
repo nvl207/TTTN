@@ -7,7 +7,7 @@ module.exports.getInventory = (req, res) => {
     const sql_query = `
         SELECT inventory.*, product.name AS product_name, product.price AS product_price, product.image AS product_image 
         FROM inventory 
-        INNER JOIN product ON inventory.id_product = product.id
+        INNER JOIN product ON inventory.id_product = product.id_product
     `;
     database.query(sql_query, (err, result) => {
         if (err) {
@@ -24,7 +24,7 @@ module.exports.addInventory = (req, res) => {
     const { id_product, size, quantity } = req.body;
 
     // Kiểm tra xem id_product có tồn tại trong bảng product không
-    const checkProductQuery = "SELECT * FROM product WHERE id = ?";
+    const checkProductQuery = "SELECT * FROM product WHERE id_product = ?";
     database.query(checkProductQuery, [id_product], (err, rows) => {
         if (err) {
             return res.json({ msg: err });
@@ -57,7 +57,7 @@ module.exports.deleteInventory = (req, res) => {
         return res.status(400).json({ msg: "Missing ID parameter" });
     }
 
-    const sql = "DELETE FROM `inventory` WHERE id = ?";
+    const sql = "DELETE FROM `inventory` WHERE id_inventory = ?";
     database.query(sql, [id], (err, result) => {
         if (err) {
             return res.status(500).json({ msg: err });
@@ -76,7 +76,7 @@ module.exports.updateInventory = (req, res) => {
         return res.status(400).json({ msg: "Missing required fields" });
     }
 
-    const sql = "UPDATE `inventory` SET quantity = ?, status = ?, sold = ?, size = ? WHERE id = ?";
+    const sql = "UPDATE `inventory` SET quantity = ?, status = ?, sold = ?, size = ? WHERE id_inventory = ?";
     database.query(sql, [quantity, status, sold, size, id], (err, result) => {
         if (err) {
             return res.status(500).json({ msg: err });

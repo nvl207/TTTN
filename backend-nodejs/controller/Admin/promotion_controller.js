@@ -15,7 +15,7 @@ module.exports.getPromotion = (req,res)=>{
 // update time sale
 module.exports.updateTimeSale = (req, res) => {
 const {id, date_start, date_end} = req.body;
-const sql_query = "update `sale` set date_start= ?, date_end = ? where id = ? ";
+const sql_query = "update `sale` set date_start= ?, date_end = ? where id_sale = ? ";
  database.query(sql_query, [date_start, date_end, id], (err,rows)=>{
     if(err){
         return res.json({msg:err});
@@ -46,7 +46,7 @@ module.exports.addPromotion = (req, res) => {
 
 module.exports.deleteSale = (req, res) => {
     const { id } = req.body;
-    const sql = "DELETE FROM sale WHERE id = ?";
+    const sql = "DELETE FROM sale WHERE id_sale = ?";
     database.query(sql, [id], (err, result) => {
         if (err) {
             console.log(err);

@@ -8,7 +8,7 @@ module.exports.getProductByCart = (req, res) => {
     }
     const productIds = data.map((item) => item.id); // Lấy ra các id sản phẩm từ dữ liệu
     const placeholders = productIds.map(() => "?").join(","); // Tạo placeholder cho mỗi id sản phẩm
-    const sql_query = `SELECT * FROM product WHERE id IN (${placeholders})`;
+    const sql_query = `SELECT * FROM product WHERE id_product IN (${placeholders})`;
     database.query(sql_query, productIds, (err, rows) => {
       if (err) {
         console.error(err);

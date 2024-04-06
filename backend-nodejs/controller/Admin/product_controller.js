@@ -5,7 +5,6 @@ module.exports.addProduct = (req, res) => {
     name,
     price,
     description,
-    promotional,
     image,
     img_des_1,
     img_des_2,
@@ -14,14 +13,14 @@ module.exports.addProduct = (req, res) => {
     id_category,
   } = req.body;
   const sqlAdd =
-    "INSERT INTO product (name, price, description, promotional, status, image, img_des_1, img_des_2, img_des_3, img_des_4, id_category) VALUES (?, ?, ?, ?, 1, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO product (name, price, description,  status, image, img_des_1, img_des_2, img_des_3, img_des_4, id_category) VALUES (?, ?, ?, ?, 1, ?, ?, ?, ?, ?, ?)";
   database.query(
     sqlAdd,
     [
       name,
       price,
       description,
-      promotional,
+     
       image,
       img_des_1,
       img_des_2,
